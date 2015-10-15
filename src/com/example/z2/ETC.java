@@ -70,30 +70,21 @@ public class ETC extends Activity {
 		b[24]=(Button)findViewById(R.id.button24);
 		
 		pho[0]=R.drawable.pho000;
-		pho[1]=R.drawable.pho001;
-		pho[2]=R.drawable.pho002;
-		pho[3]=R.drawable.pho003;
-		pho[4]=R.drawable.pho004;
-		pho[5]=R.drawable.pho005;
-		pho[6]=R.drawable.pho006;
-		pho[7]=R.drawable.pho007;
-		pho[8]=R.drawable.pho008;
-		pho[9]=R.drawable.pho009;
-		pho[10]=R.drawable.pho010;
-		pho[11]=R.drawable.pho011;
-		pho[12]=R.drawable.pho012;
-		pho[13]=R.drawable.pho009;
-		pho[14]=R.drawable.pho006;
-		pho[15]=R.drawable.pho003;
-		pho[16]=R.drawable.pho001;
-		pho[17]=R.drawable.pho010;
-		pho[18]=R.drawable.pho012;
-		pho[19]=R.drawable.pho008;
-		pho[20]=R.drawable.pho011;
-		pho[21]=R.drawable.pho004;
-		pho[22]=R.drawable.pho002;
-		pho[23]=R.drawable.pho005;
-		pho[24]=R.drawable.pho007;
+		pho[1]=R.drawable.samesizepho001;
+		pho[2]=R.drawable.samesizepho002;
+		pho[3]=R.drawable.samesizepho003;
+		pho[4]=R.drawable.samesizepho004;
+		pho[5]=R.drawable.samesizepho005;
+		pho[6]=R.drawable.samesizepho006;
+		pho[7]=R.drawable.samesizepho007;
+		pho[8]=R.drawable.samesizepho008;
+		pho[9]=R.drawable.samesizepho009;
+		pho[10]=R.drawable.samesizepho010;
+		pho[11]=R.drawable.samesizepho011;
+		pho[12]=R.drawable.samesizepho012;
+		pho[13]=R.drawable.samesizepho013;
+		pho[14]=R.drawable.samesizepho014;
+
 		
 		Col[0] = getResources().getColor(R.color.White);
 		Col[1] = getResources().getColor(R.color.Pink);
@@ -122,7 +113,8 @@ public class ETC extends Activity {
 		
 		//b[1].setBackgroundResource(pho[1]);
 		//b[0].setBackgroundColor(BIND_IMPORTANT);
-		b[0].setBackgroundColor(Color.BLUE);
+		b[0].setBackgroundColor(Color.MAGENTA);
+		
 		
 		/*
 		{
@@ -131,7 +123,7 @@ public class ETC extends Activity {
 				b[i].setText(T[i]);	
 		}
 		*/
-		
+		/*
 		{
 			RandomMode2();
 			for(int i=1;i<=24;i++)
@@ -140,6 +132,14 @@ public class ETC extends Activity {
 				b[i].setTextColor(ct[i]);
 			}
 		}
+		*/
+		{
+			//RandomMode3();
+			for(int i=1;i<=12;i++)
+				b[i].setBackgroundResource(pho[i]);
+		}
+		
+		
 		
 		/*¼àÌý*/
 		for(int i=1;i<=24;i++){
@@ -256,6 +256,11 @@ public class ETC extends Activity {
 			T[i+13]=T[(b[i])+1];
 			ct[i+13]=ct[(b[i])+1];
 		}
+		
+	}
+	
+	
+	public void RandomMode3(){
 		
 	}
 	
