@@ -40,18 +40,35 @@ public final class R {
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
         public static final int pho000=0x7f020001;
-        public static final int pho001=0x7f020002;
-        public static final int pho002=0x7f020003;
-        public static final int pho003=0x7f020004;
-        public static final int pho004=0x7f020005;
-        public static final int pho005=0x7f020006;
-        public static final int pho006=0x7f020007;
-        public static final int pho007=0x7f020008;
-        public static final int pho008=0x7f020009;
-        public static final int pho009=0x7f02000a;
-        public static final int pho010=0x7f02000b;
-        public static final int pho011=0x7f02000c;
-        public static final int pho012=0x7f02000d;
+        public static final int samesizepho001=0x7f020002;
+        public static final int samesizepho002=0x7f020003;
+        public static final int samesizepho003=0x7f020004;
+        public static final int samesizepho004=0x7f020005;
+        public static final int samesizepho005=0x7f020006;
+        public static final int samesizepho006=0x7f020007;
+        public static final int samesizepho007=0x7f020008;
+        public static final int samesizepho008=0x7f020009;
+        public static final int samesizepho009=0x7f02000a;
+        public static final int samesizepho010=0x7f02000b;
+        public static final int samesizepho011=0x7f02000c;
+        public static final int samesizepho012=0x7f02000d;
+        public static final int samesizepho013=0x7f02000e;
+        public static final int samesizepho014=0x7f02000f;
+        public static final int smallpho000=0x7f020010;
+        public static final int smallpho001=0x7f020011;
+        public static final int smallpho002=0x7f020012;
+        public static final int smallpho003=0x7f020013;
+        public static final int smallpho004=0x7f020014;
+        public static final int smallpho005=0x7f020015;
+        public static final int smallpho006=0x7f020016;
+        public static final int smallpho007=0x7f020017;
+        public static final int smallpho008=0x7f020018;
+        public static final int smallpho009=0x7f020019;
+        public static final int smallpho010=0x7f02001a;
+        public static final int smallpho011=0x7f02001b;
+        public static final int smallpho012=0x7f02001c;
+        public static final int smallpho013=0x7f02001d;
+        public static final int smallpho014=0x7f02001e;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f090000;

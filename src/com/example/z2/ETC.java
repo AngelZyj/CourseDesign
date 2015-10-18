@@ -18,8 +18,6 @@ public class ETC extends Activity {
 	
 	final Button[] b=new Button[30];
 	int Width,Height;
-	int [] pho=new int[100];
-	
 	String [] T=new String[100];
 	
 	//RandomMode1()随机数--数字
@@ -31,7 +29,11 @@ public class ETC extends Activity {
 	int [] Col = new int[30];
 	String [] Ctt={"白色","粉红色","红色","淡紫色","深紫色","淡蓝色","深蓝色","浅绿色","深绿色","黄色","金色","灰色","黑色","棕色","青色"};
 	int [] ct = new int[30];
-
+	
+	//RandomMode3()随机数--图片
+	int [] pho=new int[100];
+	int [] spho=new int[100];
+	int [] so=new int[100];
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,22 @@ public class ETC extends Activity {
 		pho[12]=R.drawable.samesizepho012;
 		pho[13]=R.drawable.samesizepho013;
 		pho[14]=R.drawable.samesizepho014;
+		
+		spho[0]=R.drawable.smallpho000;
+		spho[1]=R.drawable.smallpho001;
+		spho[2]=R.drawable.smallpho002;
+		spho[3]=R.drawable.smallpho003;
+		spho[4]=R.drawable.smallpho004;
+		spho[5]=R.drawable.smallpho005;
+		spho[6]=R.drawable.smallpho006;
+		spho[7]=R.drawable.smallpho007;
+		spho[8]=R.drawable.smallpho008;
+		spho[9]=R.drawable.smallpho009;
+		spho[10]=R.drawable.smallpho010;
+		spho[11]=R.drawable.smallpho011;
+		spho[12]=R.drawable.smallpho012;
+		spho[13]=R.drawable.smallpho013;
+		spho[14]=R.drawable.smallpho014;
 
 		
 		Col[0] = getResources().getColor(R.color.White);
@@ -113,7 +131,7 @@ public class ETC extends Activity {
 		
 		//b[1].setBackgroundResource(pho[1]);
 		//b[0].setBackgroundColor(BIND_IMPORTANT);
-		b[0].setBackgroundColor(Color.MAGENTA);
+		b[0].setBackgroundColor(Color.CYAN);
 		
 		
 		/*
@@ -134,9 +152,12 @@ public class ETC extends Activity {
 		}
 		*/
 		{
-			//RandomMode3();
-			for(int i=1;i<=12;i++)
-				b[i].setBackgroundResource(pho[i]);
+			RandomMode3();
+			for(int i=1;i<=24;i++)
+			{
+				b[i].setBackgroundResource(so[i]);
+				b[i].setText("");
+			}
 		}
 		
 		
@@ -261,7 +282,43 @@ public class ETC extends Activity {
 	
 	
 	public void RandomMode3(){
+		int n = 13;
+		Random rand = new Random();
+		boolean[]  bool = new boolean[n];
+		int [] randInt = new int[13];
+		for(int i=1; i<=12;i++) 
+		{
+			do 
+			{
+				randInt[i] = rand.nextInt(n);
+		    }while(bool[randInt[i]]);
+			bool[randInt[i]] = true;
+			so[i]=spho[randInt[i]+1];
+			T[i]=k+spho[randInt[i]+1];
+			//System.out.println(randInt[i]);
+		}
 		
+		int [] a = new int[12] ;
+		int [] b = new int[12] ;
+		for(int i=0;i<12;i++)
+		{
+			b[i]=(int) (Math.random()*12);
+			for(int j=0;j<i;j++)
+			{
+				if(j==0) 
+					a[i]=b[i];
+				if(a[i]==b[j])
+				{
+					i--;
+					break; 
+				}
+			}
+		}
+		for(int i=0;i<12;i++)
+		{
+			T[i+13]=T[(b[i]+1)];
+			so[i+13]=so[b[i]+1];
+		}
 	}
 	
 
