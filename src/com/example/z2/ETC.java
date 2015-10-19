@@ -1,24 +1,30 @@
 package com.example.z2;
 
 import java.util.Random;
-
 import com.example.z2.R;
-
+import com.example.z2.R.drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.view.Display;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+@SuppressLint("NewApi")
 public class ETC extends Activity {
 	
 	final Button[] b=new Button[30];
 	int Width,Height;
 	String [] T=new String[100];
+	int star = 0;
 	
 	//RandomMode1()随机数--数字
 	String k="";
@@ -34,6 +40,10 @@ public class ETC extends Activity {
 	int [] pho=new int[100];
 	int [] spho=new int[100];
 	int [] so=new int[100];
+	
+	//边框
+	GradientDrawable drawable1 = new GradientDrawable();
+	GradientDrawable drawable2 = new GradientDrawable();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +54,17 @@ public class ETC extends Activity {
         Width = display.getWidth();
         Height = display.getHeight();
 		int w=Width;
+		
+		//边框
+		drawable1.setShape(GradientDrawable.RECTANGLE);
+		drawable1.setStroke(10, Color.WHITE);
+		drawable1.setColor(Color.LTGRAY);
+		drawable1.setCornerRadius(10f);
+		
+		drawable2.setShape(GradientDrawable.RECTANGLE);
+		drawable2.setStroke(10, Color.GREEN);
+		drawable2.setColor(Color.green(TRIM_MEMORY_UI_HIDDEN));
+		drawable2.setCornerRadius(10f);
 		
 		b[0]=(Button)findViewById(R.id.button0);
 		b[1]=(Button)findViewById(R.id.button1);
@@ -124,6 +145,7 @@ public class ETC extends Activity {
 		{
 			b[i].setWidth(Width/4);
 			b[i].setHeight(Height/10);
+			b[i].setBackgroundDrawable(drawable1);
 			//b[i].setX(Width);		//b[i].setY(Height);
 		}
 		b[0].setWidth(Width);
@@ -132,16 +154,23 @@ public class ETC extends Activity {
 		//b[1].setBackgroundResource(pho[1]);
 		//b[0].setBackgroundColor(BIND_IMPORTANT);
 		b[0].setBackgroundColor(Color.CYAN);
+		b[0].setAlpha((float) 0.1);
 		
+		for(int i=1;i<=12;i++)		//12个旋转180度
+		{
+			b[i].setRotationX(180);
+			b[i].setRotationY(180);
+		}
 		
-		/*
+		star=2;
+		//选择三种模式之一
+		if(star==1)
 		{
 			RandomMode1();
 			for(int i=1;i<=24;i++)
 				b[i].setText(T[i]);	
 		}
-		*/
-		/*
+		else if(star==2)
 		{
 			RandomMode2();
 			for(int i=1;i<=24;i++)
@@ -150,7 +179,7 @@ public class ETC extends Activity {
 				b[i].setTextColor(ct[i]);
 			}
 		}
-		*/
+		else if(star==3)
 		{
 			RandomMode3();
 			for(int i=1;i<=24;i++)
@@ -159,14 +188,26 @@ public class ETC extends Activity {
 				b[i].setText("");
 			}
 		}
-		
-		
+
 		
 		/*监听*/
 		for(int i=1;i<=24;i++){
 			final int j=i;
 			b[j].setOnClickListener(new Button.OnClickListener(){
 				public void onClick(View v){
+					if(j<13)
+					{
+						b[j].setRotationX(0);
+						b[j].setRotationY(0);
+					}
+					else
+					{
+						b[j].setRotationX(180);
+						b[j].setRotationY(180);
+					}
+					if(star==3)
+						judge1(j);
+					else if(star==2||star==1)
 						judge(j);
 				}
 			});
@@ -181,25 +222,102 @@ public class ETC extends Activity {
 		return true;
 	}
 	
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	@SuppressLint("NewApi")
 	public void judge(int j){
 		int i=j;
 		if(i>12)
 		{
+			b[m].setBackgroundDrawable(drawable1);
+			b[m].setRotationX(0);
+			b[m].setRotationY(0);
+			mom=T[i];
+			m=i;
+			b[i].setBackgroundDrawable(drawable2);
+		}
+		else
+		{
+			b[s].setBackgroundDrawable(drawable1);
+			b[s].setRotationX(180);
+			b[s].setRotationY(180);
+			son=T[i];
+			s=i;
+			b[i].setBackgroundDrawable(drawable2);
+		}
+		
+		if(son.equals(mom)&&m!=0)
+		{
+			b[m].setText("000");
+			b[s].setText("000");
+			b[m].setAlpha(0);
+			b[s].setAlpha(0);
+			b[m].setEnabled(false);
+			b[s].setEnabled(false);
+			m=0;
+			s=0;
+		}
+		else
+		{
+			if((m!=0&&s!=0))
+			{
+				
+				b[m].setRotationX(0);
+				b[m].setRotationY(0);
+				b[s].setRotationX(180);
+				b[s].setRotationY(180);
+				ObjectAnimator.ofFloat(b[m], "RotationX", 0,360).setDuration(1000).start();
+				ObjectAnimator.ofFloat(b[s], "RotationX", 0,360).setDuration(1000).start();
+
+				b[m].setBackgroundDrawable(drawable1);
+				b[s].setBackgroundDrawable(drawable1);
+				m=0;
+				s=0;
+				mom="";
+				son="";
+			}
+		}	
+	}
+	
+	public void judge1(int j){
+		int i=j;
+		if(i>12)
+		{
+			b[m].setRotationX(0);
+			b[m].setRotationY(0);
 			mom=T[i];
 			m=i;
 		}
 		else
 		{
+			b[s].setRotationX(180);
+			b[s].setRotationY(180);
 			son=T[i];
 			s=i;
 		}
 		
-		if(son.equals(mom))
+		if(son.equals(mom)&&m!=0)
 		{
 			b[m].setText("000");
 			b[s].setText("000");
+			b[m].setAlpha(0);
+			b[s].setAlpha(0);
+			m=0;
+			s=0;
 		}
-			
+		else
+		{
+			if((m!=0&&s!=0))
+			{	
+				b[m].setRotationX(0);
+				b[m].setRotationY(0);
+				b[s].setRotationX(180);
+				b[s].setRotationY(180);
+				m=0;
+				s=0;
+				mom="";
+				son="";
+			}	
+		}	
 	}
 	
 	//产生12位100以内不相同的随即整数 

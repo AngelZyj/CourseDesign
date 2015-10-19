@@ -1,13 +1,14 @@
-package com.example.test;
+package com.example.z2;
 
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -18,6 +19,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Display;
@@ -35,9 +37,10 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import com.example.z2.Gallery3DActivity;
 
-import com.example.test.Gallery3DActivity;
-
+@SuppressLint("NewApi")
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class AnimationTest extends Activity {
 	Handler handler;        //产生滑块的线程
 	Runnable task;
@@ -99,6 +102,8 @@ public class AnimationTest extends Activity {
 		
 		
 	}
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	@SuppressLint("NewApi")
 	public void initBlock(Button bb1,Button bb2){ 
 		Viewcount.bringToFront();
 		bb1 = new Button(AnimationTest.this);
@@ -141,6 +146,7 @@ public class AnimationTest extends Activity {
 		
 		bb1.setOnClickListener(new OnClickListener() {
 			
+			@SuppressLint("NewApi")
 			@Override
 			public void onClick(View v) {
 				Drawable background = v.getBackground();
@@ -191,6 +197,7 @@ public class AnimationTest extends Activity {
 		});
 		bb2.setOnClickListener(new OnClickListener() {
 			
+			@SuppressLint("NewApi")
 			@Override
 			public void onClick(View v) {
 				Drawable background = v.getBackground();
@@ -252,3 +259,4 @@ public class AnimationTest extends Activity {
 	}
 
 }
+
