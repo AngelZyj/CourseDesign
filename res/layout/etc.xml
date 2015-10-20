@@ -20,8 +20,7 @@
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-        
-                android:text="01"/>
+                android:text="01" />
 
             <Button
                 android:id="@+id/button2"
@@ -112,7 +111,9 @@
             android:id="@+id/button0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="幼教模式" />
+            android:text="幼教模式" 
+            android:textColor="#ffff0000"
+            android:textSize="36dp"/>
     </LinearLayout>
 
     <TableLayout

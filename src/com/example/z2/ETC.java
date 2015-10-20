@@ -1,25 +1,34 @@
 package com.example.z2;
 
 import java.util.Random;
+
 import com.example.z2.R;
 import com.example.z2.R.drawable;
+
 import android.os.Build;
 import android.os.Bundle;
+import android.renderscript.Font;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.Display;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 @SuppressLint("NewApi")
-public class ETC extends Activity {
+public class ETC extends Activity implements OnClickListener{
+	
+	Button startplay;
+	int mSingleChoiceID = -1;
 	
 	final Button[] b=new Button[30];
 	int Width,Height;
@@ -49,6 +58,9 @@ public class ETC extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.etc);
+		
+		startplay = (Button) findViewById(R.id.button0);
+		startplay.setOnClickListener(this);
 		
 		Display display = this.getWindowManager().getDefaultDisplay();
         Width = display.getWidth();
@@ -145,6 +157,7 @@ public class ETC extends Activity {
 		{
 			b[i].setWidth(Width/4);
 			b[i].setHeight(Height/10);
+			b[i].setText(" ");
 			b[i].setBackgroundDrawable(drawable1);
 			//b[i].setX(Width);		//b[i].setY(Height);
 		}
@@ -153,8 +166,9 @@ public class ETC extends Activity {
 		
 		//b[1].setBackgroundResource(pho[1]);
 		//b[0].setBackgroundColor(BIND_IMPORTANT);
-		b[0].setBackgroundColor(Color.CYAN);
+		b[0].setBackgroundColor(Color.BLUE);
 		b[0].setAlpha((float) 0.1);
+	       
 		
 		for(int i=1;i<=12;i++)		//12个旋转180度
 		{
@@ -162,8 +176,9 @@ public class ETC extends Activity {
 			b[i].setRotationY(180);
 		}
 		
-		star=2;
+		//star=2;
 		//选择三种模式之一
+		/*
 		if(star==1)
 		{
 			RandomMode1();
@@ -188,6 +203,7 @@ public class ETC extends Activity {
 				b[i].setText("");
 			}
 		}
+		*/
 
 		
 		/*监听*/
@@ -439,7 +455,45 @@ public class ETC extends Activity {
 		}
 	}
 	
-
+	public void onClick(View v){
+		
+		new AlertDialog.Builder(this).setTitle("请选择游戏").setSingleChoiceItems(new String[]{"数字","颜色","图片"},0,new DialogInterface.OnClickListener(){
+			public void onClick(DialogInterface dialog,int which){
+				mSingleChoiceID = which;
+				
+			}
+		}).setNegativeButton("确定",new DialogInterface.OnClickListener(){
+			public void onClick(DialogInterface dialog,int which){
+				if(mSingleChoiceID==0){
+					star=1;
+					RandomMode1();
+					for(int i=1;i<=24;i++)
+						b[i].setText(T[i]);	
+				}
+				else if(mSingleChoiceID==1){
+					star=2;
+					RandomMode2();
+					for(int i=1;i<=24;i++)
+					{
+						b[i].setText(T[i]);
+						b[i].setTextColor(ct[i]);
+					}
+					//Intent intent = new Intent(ETC.this,ETC.class);
+					//startActivity(intent);
+					//ETC.this.finish();
+				}
+				else if(mSingleChoiceID==2){
+					star=3;
+					RandomMode3();
+					for(int i=1;i<=24;i++)
+					{
+						b[i].setBackgroundResource(so[i]);
+						b[i].setText("");
+					}
+				}
+			}}).show();
+			
+		}
 }
 
 
