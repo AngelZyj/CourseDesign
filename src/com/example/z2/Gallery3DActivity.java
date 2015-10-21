@@ -1,11 +1,14 @@
-package com.example.test;
+package com.example.z2;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Gallery;
@@ -13,6 +16,8 @@ import android.widget.Toast;
 
 public class Gallery3DActivity extends Activity {
 
+	int mSingleChoiceID = -1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -39,6 +44,10 @@ public class Gallery3DActivity extends Activity {
              if(position==1){
             	 Intent intent1 = new Intent(Gallery3DActivity.this,AnimationTest.class);
             	 startActivity(intent1);
+            	 //ETC.star =55;
+             }else if(position==0)
+             {
+            	 yjms(view);
              }
          }
          
@@ -53,5 +62,36 @@ public class Gallery3DActivity extends Activity {
 		getMenuInflater().inflate(R.menu.gallery3_d, menu);
 		return true;
 	}
+	
+public void yjms(View v){
+		
+		new AlertDialog.Builder(this).setTitle("请选择游戏").setSingleChoiceItems(new String[]{"数字","颜色","图片"},0,new DialogInterface.OnClickListener(){
+			public void onClick(DialogInterface dialog,int which){
+				mSingleChoiceID = which;
+				
+			}
+		}).setNegativeButton("确定",new DialogInterface.OnClickListener(){
+			public void onClick(DialogInterface dialog,int which){
+				if(mSingleChoiceID==0){
+					ETC.star=1;
+					Intent intent = new Intent(Gallery3DActivity.this,ETC.class);
+					startActivity(intent);
+					Gallery3DActivity.this.finish();
+				}
+				else if(mSingleChoiceID==1){
+					ETC.star=2;
+					Intent intent = new Intent(Gallery3DActivity.this,ETC.class);
+					startActivity(intent);
+					Gallery3DActivity.this.finish();
+				}
+				else if(mSingleChoiceID==2){
+					ETC.star=3;
+					Intent intent = new Intent(Gallery3DActivity.this,ETC.class);
+					startActivity(intent);
+					Gallery3DActivity.this.finish();
+				}
+			}}).show();
+			
+		}
 
 }

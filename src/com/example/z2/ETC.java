@@ -25,15 +25,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 @SuppressLint("NewApi")
-public class ETC extends Activity implements OnClickListener{
-	
-	Button startplay;
-	int mSingleChoiceID = -1;
+public class ETC extends Activity {
 	
 	final Button[] b=new Button[30];
 	int Width,Height;
 	String [] T=new String[100];
-	int star = 0;
+	static int star = 0;
 	
 	//RandomMode1()随机数--数字
 	String k="";
@@ -58,9 +55,6 @@ public class ETC extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.etc);
-		
-		startplay = (Button) findViewById(R.id.button0);
-		startplay.setOnClickListener(this);
 		
 		Display display = this.getWindowManager().getDefaultDisplay();
         Width = display.getWidth();
@@ -177,8 +171,7 @@ public class ETC extends Activity implements OnClickListener{
 		}
 		
 		//star=2;
-		//选择三种模式之一
-		/*
+		//选择三种模式之一	
 		if(star==1)
 		{
 			RandomMode1();
@@ -203,9 +196,7 @@ public class ETC extends Activity implements OnClickListener{
 				b[i].setText("");
 			}
 		}
-		*/
 
-		
 		/*监听*/
 		for(int i=1;i<=24;i++){
 			final int j=i;
@@ -276,13 +267,13 @@ public class ETC extends Activity implements OnClickListener{
 		{
 			if((m!=0&&s!=0))
 			{
-				
 				b[m].setRotationX(0);
 				b[m].setRotationY(0);
 				b[s].setRotationX(180);
 				b[s].setRotationY(180);
+				
 				ObjectAnimator.ofFloat(b[m], "RotationX", 0,360).setDuration(1000).start();
-				ObjectAnimator.ofFloat(b[s], "RotationX", 0,360).setDuration(1000).start();
+				ObjectAnimator.ofFloat(b[s], "RotationX", 180,540).setDuration(1000).start();
 
 				b[m].setBackgroundDrawable(drawable1);
 				b[s].setBackgroundDrawable(drawable1);
@@ -455,45 +446,7 @@ public class ETC extends Activity implements OnClickListener{
 		}
 	}
 	
-	public void onClick(View v){
-		
-		new AlertDialog.Builder(this).setTitle("请选择游戏").setSingleChoiceItems(new String[]{"数字","颜色","图片"},0,new DialogInterface.OnClickListener(){
-			public void onClick(DialogInterface dialog,int which){
-				mSingleChoiceID = which;
-				
-			}
-		}).setNegativeButton("确定",new DialogInterface.OnClickListener(){
-			public void onClick(DialogInterface dialog,int which){
-				if(mSingleChoiceID==0){
-					star=1;
-					RandomMode1();
-					for(int i=1;i<=24;i++)
-						b[i].setText(T[i]);	
-				}
-				else if(mSingleChoiceID==1){
-					star=2;
-					RandomMode2();
-					for(int i=1;i<=24;i++)
-					{
-						b[i].setText(T[i]);
-						b[i].setTextColor(ct[i]);
-					}
-					//Intent intent = new Intent(ETC.this,ETC.class);
-					//startActivity(intent);
-					//ETC.this.finish();
-				}
-				else if(mSingleChoiceID==2){
-					star=3;
-					RandomMode3();
-					for(int i=1;i<=24;i++)
-					{
-						b[i].setBackgroundResource(so[i]);
-						b[i].setText("");
-					}
-				}
-			}}).show();
-			
-		}
+	
 }
 
 
