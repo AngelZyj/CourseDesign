@@ -21,9 +21,11 @@ import android.view.View.OnClickListener;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 public class DoubleGame extends Activity {
 	Button doubleCenter;
+	TextView topgradeview,btmgradeview;
 	Display display;
 	int Width,Height;
 	Handler handler;
@@ -35,6 +37,8 @@ public class DoubleGame extends Activity {
 	Button[] bgroup,bgroup1;               //铺满整个屏幕的按钮数组
 	ObjectAnimator objgroup[],objgroup1[];      //按钮对应动画数组
 	int groupIndex=0;
+	int topgrade=0;
+	int bottomgrade=0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -54,7 +58,23 @@ public class DoubleGame extends Activity {
 		doubleCenter.setBackgroundColor(Color.CYAN);
 		doubleCenter.bringToFront();
 		
-		//doubleCenter.setBackgroundColor(Color.YELLOW);
+		topgradeview = new TextView(DoubleGame.this);
+		this.addContentView(topgradeview, params);
+		topgradeview.setX((Width*3)/6);
+		topgradeview.setY((Height*9)/16);
+		topgradeview.setTextSize(22);
+		topgradeview.setTextColor(Color.RED);
+		topgradeview.setText("分数：0");
+		
+		
+		btmgradeview = new TextView(DoubleGame.this);
+		this.addContentView(btmgradeview, params);
+		btmgradeview.setX(Width/3);
+		btmgradeview.setY((Height*5)/16);
+		btmgradeview.setTextSize(22);
+		btmgradeview.setTextColor(Color.RED);
+		btmgradeview.setText("分数：0");
+		
 		bgroup = new Button[12];                //下面6个按钮
 		for(int i=0;i<12;i++){
         	bgroup[i] = new Button(DoubleGame.this);
@@ -74,6 +94,8 @@ public class DoubleGame extends Activity {
         for(int j=0;j<12;j++){
         	objgroup1[j] = new ObjectAnimator();
         }
+        
+        
 		
 		
 		
@@ -211,6 +233,7 @@ public class DoubleGame extends Activity {
 		AnimatorSet as = new AnimatorSet();
 		as.play(objgroup[i]).with(objgroup[j]).with(objgroup[o]).with(objgroup[u]);
 		doubleCenter.bringToFront();
+		topgradeview.bringToFront();
 		
 		bb1.setOnClickListener(new OnClickListener() {
 			
@@ -222,11 +245,16 @@ public class DoubleGame extends Activity {
 				int getcolor = Resources.getSystem().getColor(android.R.color.black);
 				if(color == getcolor){
 					v.setBackgroundColor(Color.GRAY);
+					topgrade = topgrade+1;
+					topgradeview.setText("分数："+topgrade);
+					topgradeview.bringToFront();
 				}
 				else{
-					ActionStop();
-					DoubleGame.this.onPause();
-					handler.removeCallbacks(task);
+					topgrade = topgrade-1;
+					topgradeview.setText("分数："+topgrade);
+//					ActionStop();
+//					DoubleGame.this.onPause();
+//					handler.removeCallbacks(task);
 				}
 			}
 		});
@@ -240,11 +268,16 @@ public class DoubleGame extends Activity {
 				int getcolor = Resources.getSystem().getColor(android.R.color.black);
 				if(color == getcolor){
 					v.setBackgroundColor(Color.GRAY);
+					topgrade = topgrade+1;
+					topgradeview.setText("分数："+topgrade);
+					topgradeview.bringToFront();
 				}
 				else{
-					ActionStop();
-					DoubleGame.this.onPause();
-					handler.removeCallbacks(task);
+					topgrade = topgrade-1;
+					topgradeview.setText("分数："+topgrade);
+//					ActionStop();
+//					DoubleGame.this.onPause();
+//					handler.removeCallbacks(task);
 				}
 			}
 		});
@@ -258,11 +291,16 @@ public class DoubleGame extends Activity {
 				int getcolor = Resources.getSystem().getColor(android.R.color.black);
 				if(color == getcolor){
 					v.setBackgroundColor(Color.GRAY);
+					topgrade = topgrade+1;
+					topgradeview.setText("分数："+topgrade);
+					topgradeview.bringToFront();
 				}
 				else{
-					ActionStop();
-					DoubleGame.this.onPause();
-					handler.removeCallbacks(task);
+					topgrade = topgrade-1;
+					topgradeview.setText("分数："+topgrade);
+//					ActionStop();
+//					DoubleGame.this.onPause();
+//					handler.removeCallbacks(task);
 				}
 			}
 		});
@@ -276,11 +314,16 @@ public class DoubleGame extends Activity {
 			int getcolor = Resources.getSystem().getColor(android.R.color.black);
 			if(color == getcolor){
 				v.setBackgroundColor(Color.GRAY);
+				topgrade = topgrade+1;
+				topgradeview.setText("分数："+topgrade);
+				topgradeview.bringToFront();
 			}
 			else{
-				ActionStop();
-				DoubleGame.this.onPause();
-				handler.removeCallbacks(task);
+				topgrade = topgrade-1;
+				topgradeview.setText("分数："+topgrade);
+//				ActionStop();
+//				DoubleGame.this.onPause();
+//				handler.removeCallbacks(task);
 				}
 			}
 		});
@@ -365,6 +408,7 @@ public class DoubleGame extends Activity {
 		as.play(objgroup[i]).with(objgroup[j]).with(objgroup[o]).with(objgroup[u]);
 		
 		doubleCenter.bringToFront();
+		btmgradeview.bringToFront();
 		
 		bb1.setOnClickListener(new OnClickListener() {
 			
@@ -376,11 +420,15 @@ public class DoubleGame extends Activity {
 				int getcolor = Resources.getSystem().getColor(android.R.color.black);
 				if(color == getcolor){
 					v.setBackgroundColor(Color.GRAY);
+					bottomgrade = bottomgrade+1;
+					btmgradeview.setText("分数："+bottomgrade);
 				}
 				else{
-					ActionStop();
-					DoubleGame.this.onPause();
-					handler.removeCallbacks(task1);
+//					ActionStop();
+//					DoubleGame.this.onPause();
+//					handler.removeCallbacks(task1);
+					bottomgrade = bottomgrade-1;
+					btmgradeview.setText("分数："+bottomgrade);
 				}
 			}
 		});
@@ -394,11 +442,15 @@ public class DoubleGame extends Activity {
 				int getcolor = Resources.getSystem().getColor(android.R.color.black);
 				if(color == getcolor){
 					v.setBackgroundColor(Color.GRAY);
+					bottomgrade = bottomgrade+1;
+					btmgradeview.setText("分数："+bottomgrade);
 				}
 				else{
-					ActionStop();
-					DoubleGame.this.onPause();
-					handler.removeCallbacks(task1);
+//					ActionStop();
+//					DoubleGame.this.onPause();
+//					handler.removeCallbacks(task1);
+					bottomgrade = bottomgrade-1;
+					btmgradeview.setText("分数："+bottomgrade);
 				}
 			}
 		});
@@ -412,11 +464,15 @@ public class DoubleGame extends Activity {
 				int getcolor = Resources.getSystem().getColor(android.R.color.black);
 				if(color == getcolor){
 					v.setBackgroundColor(Color.GRAY);
+					bottomgrade = bottomgrade+1;
+					btmgradeview.setText("分数："+bottomgrade);
 				}
 				else{
-					ActionStop();
-					DoubleGame.this.onPause();
-					handler.removeCallbacks(task1);
+//					ActionStop();
+//					DoubleGame.this.onPause();
+//					handler.removeCallbacks(task1);
+					bottomgrade = bottomgrade-1;
+					btmgradeview.setText("分数："+bottomgrade);
 				}
 			}
 		});
@@ -430,11 +486,15 @@ public class DoubleGame extends Activity {
 			int getcolor = Resources.getSystem().getColor(android.R.color.black);
 			if(color == getcolor){
 				v.setBackgroundColor(Color.GRAY);
+				bottomgrade = bottomgrade+1;
+				btmgradeview.setText("分数："+bottomgrade);
 			}
 			else{
-				ActionStop();
-				DoubleGame.this.onPause();
-				handler.removeCallbacks(task1);
+//				ActionStop();
+//				DoubleGame.this.onPause();
+//				handler.removeCallbacks(task1);
+				bottomgrade = bottomgrade-1;
+				btmgradeview.setText("分数："+bottomgrade);
 				}
 			}
 		});
