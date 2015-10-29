@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Z2</string>
+    <string name="app_name">MusicBox</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_gallery3_d">Gallery3DActivity</string>
+    <string name="title_activity_animation_test">AnimationTest</string>
+    <string name="title_activity_etc">ETC</string>
+    <string name="title_activity_music_list">MusicList</string>
+    <string name="title_activity_double">Double</string>
+    <string name="title_activity_double_game">DoubleGame</string>
+    <string name="title_activity_welcome">Welcome</string>
+    <string name="title_activity_origin_select">OriginSelect</string>
+    <string name="title_activity_etcselect">ETCSelect</string>
 
 </resources>

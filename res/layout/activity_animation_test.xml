@@ -11,11 +11,17 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:id="@+id/bbb"/>
-    <Button 
+    <!-- <Button 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="开始"
-        android:id="@+id/ccc"/>
+        android:id="@+id/ccc"/> -->
+    <ImageButton 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/redbutton"
+        android:layout_centerInParent="true"
+        android:id="@+id/imagestart"/>
     <Button 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
